@@ -1,0 +1,24 @@
+Yes, there are several improvements worth making. These are in order of how much they’d help you win clients.
+
+Highest impact
+
+Let people try your real bot. Replace the scripted demo with a “Try Tobbaco AI on WhatsApp” button linking to the real bot number from your screenshot. A prospect chatting with a live bot is more convincing than any description.
+Add real screenshots to the project cards. Use your Truckana dashboard, the FBK site and the WhatsApp chats. Visual proof beats text, and I can embed them so they show up on the published page.
+Add a short FAQ and “what’s not included” section. Clients will ask whether the domain renews after year one, whether Meta charges for WhatsApp API messages, and what happens after launch. Answering these up front builds trust and filters out price-shoppers.
+Add testimonials or mini case studies. Even one or two lines from a client, in a Problem → Solution → Result format, helps a lot. If you have no quotes yet, ask your first two clients now.
+Make the “35 systems” claim easy to back up. A “More of my work” strip with project names or categories would do it, so it doesn’t read as an unproven number.
+
+Technical polish
+
+Link preview image: when someone shares your link on WhatsApp, it should show a branded card with the logo and tagline. This matters a lot for how you’ll get leads.
+Page weight: compress the logo (it’s currently about 140 KB inline), since many visitors will be on mobile data.
+SEO basics: add a meta description, a social share image and “ProfessionalService” structured data, plus a custom domain like saintacademy.com. These work best on your own hosting, which would mean a Next.js or static version.
+Click tracking: count WhatsApp button clicks so you can see which section brings enquiries (needs your own hosting too).
+
+Offer and conversion
+
+Pricing: consider an optional “monthly care plan” for updates, hosting and bot maintenance. It gives you recurring income.
+Sticky mobile bar: a “Get a quote” button that stays at the bottom on phones.
+Contact options: a small form or booking link for people who don’t want to message on WhatsApp.
+
+My suggestion is to do 1, 2 and 3 first, since they’re quick and make the biggest difference. If you send me a few screenshots of Truckana, FBK and the chats (or confirm which bot number to link), I can add those straight away.
