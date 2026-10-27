@@ -1,20 +1,60 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Saint Academy
 
-# Run and deploy your AI Studio app
+Marketing site for Saint Academy: websites from $80 and WhatsApp and web AI chatbots from $150. The live page is a single static `index.html` plus images. Express is only used to preview it on your machine.
 
-This contains everything you need to run your app locally.
+## Run locally
 
-View your app in AI Studio: https://ai.studio/apps/5b5fb0a3-59e2-46f5-b7f5-fcc400bf67ae
+Requires Node.js 20 or newer.
 
-## Run Locally
+```bash
+npm install
+npm run dev
+```
 
-**Prerequisites:**  Node.js
+Open http://localhost:3000.
 
+## Deploy on Cloudflare Workers
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+This site is deployed as [Workers static assets](https://developers.cloudflare.com/workers/static-assets/). There is no Worker script. `npm run build` copies the page and images into `dist/`, and Wrangler uploads only that folder.
+
+In the Cloudflare Workers Builds settings for this repo, use:
+
+| Setting | Command |
+| --- | --- |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+
+The Worker name in `wrangler.jsonc` is `saintacademy`, which matches the project Cloudflare already created.
+
+Deploy from your own machine with:
+
+```bash
+npx wrangler login
+npm run deploy
+```
+
+`npm run deploy` builds `dist/` and then runs `wrangler deploy`. You need a Cloudflare account that can publish the `saintacademy` Worker.
+
+### Why the previous deploy failed
+
+`npx wrangler deploy` ran with no config file, so Wrangler guessed this was a static site and set the asset directory to the repository root. That upload included `node_modules`, and Cloudflare rejected it:
+
+```text
+Asset too large.
+Cloudflare Workers supports assets with sizes of up to 25 MiB.
+We found a file .../node_modules/workerd/bin/workerd with a size of 137 MiB.
+```
+
+`wrangler.jsonc` now points `assets.directory` at `./dist`. The build does not copy `node_modules`, `.git`, the Express server, or markdown notes. Unknown paths still fall back to `index.html`, same as the local server.
+
+## Project layout
+
+| Path | Purpose |
+| --- | --- |
+| `index.html` | The site |
+| `logo.png`, `og-image.jpg` | Logo and link-preview image |
+| `src/assets/images/` | Project screenshots used on the page |
+| `public/` | Extra static files, copied to the site root |
+| `server.js` | Local preview server |
+| `scripts/build-static.mjs` | Builds the `dist/` folder Wrangler uploads |
+| `wrangler.jsonc` | Cloudflare Workers config |
