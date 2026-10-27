@@ -1,0 +1,8 @@
+{
+  "name": "Saint Academy",
+  "description": "Websites from $80 and WhatsApp & web AI chatbots from $150. Inspired by passion, driven by excellence.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
