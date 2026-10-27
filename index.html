@@ -133,10 +133,9 @@ h1,h2,h3,h4{
 }
 .tabular-nums{font-variant-numeric:tabular-nums}
 .wrap{
-  max-width:1440px;
-  width:95%;
+  width:min(1120px, 100%);
   margin:0 auto;
-  padding:0 36px;
+  padding:0 clamp(18px, 3vw, 32px);
 }
 section{padding:48px 0}
 @media(max-width:768px){
@@ -257,11 +256,10 @@ header{
   align-items:center;
   justify-content:space-between;
   height:70px;
-  gap:16px;
-  width:100%;
-  max-width:1440px;
+  gap:12px;
+  width:min(1120px, 100%);
   margin:0 auto;
-  padding:0 36px;
+  padding:0 clamp(18px, 3vw, 32px);
 }
 .brand{
   display:flex;
@@ -284,16 +282,71 @@ header{
   border:1px solid var(--line);
   background:#fff;
 }
-.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex:1;
+  min-width:0;
+  gap:clamp(8px, 1.1vw, 18px);
+}
 nav a{
   color:var(--ink);
   text-decoration:none;
   font-weight:600;
-  font-size:.92rem;
+  font-size:clamp(.78rem, .9vw, .92rem);
   position:relative;
   white-space:nowrap;
   transition:color .2s;
 }
+.nav-toggle{
+  display:none;
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--card-solid);
+  padding:0;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:5px;
+}
+.nav-toggle-bar{
+  display:block;
+  width:18px;
+  height:2px;
+  border-radius:2px;
+  background:var(--ink);
+  transition:transform .2s ease, opacity .2s ease;
+}
+.nav-toggle.is-open .nav-toggle-bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.is-open .nav-toggle-bar:nth-child(2){opacity:0}
+.nav-toggle.is-open .nav-toggle-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  display:none;
+  background:var(--card-solid);
+  border-top:1px solid var(--line);
+  box-shadow:0 18px 40px -24px rgba(11,22,48,.45);
+}
+.mobile-menu-inner{
+  width:min(1120px, 100%);
+  margin:0 auto;
+  padding:6px clamp(18px, 3vw, 32px) 12px;
+  display:flex;
+  flex-direction:column;
+}
+.mobile-menu a{
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:600;
+  font-size:1rem;
+  padding:13px 2px;
+  border-bottom:1px solid var(--line);
+}
+.mobile-menu a:last-child{border-bottom:0}
+.mobile-menu a:hover{color:var(--blue)}
 nav a::after{
   content:"";
   position:absolute;
@@ -734,25 +787,25 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:.9rem;border-top:1px soli
 }
 
 /* Responsive Breakpoints */
-@media(max-width:1120px){
-  .nav-links{gap:16px}
-  nav a{font-size:.88rem}
-  .services-grid{grid-template-columns:repeat(2, 1fr)}
-  .process-grid{grid-template-columns:repeat(2, 1fr)}
-  .price-grid{grid-template-columns:repeat(2, 1fr)}
-  .reviews-grid{grid-template-columns:repeat(2, 1fr)}
-  .stats-grid{grid-template-columns:repeat(2, 1fr)}
-  .demo-grid{grid-template-columns:1fr;gap:40px}
+@media(max-width:980px){
+  .nav-links{display:none}
+  .nav-toggle{display:inline-flex}
+  .mobile-menu:not([hidden]){display:block}
+  .demo-grid{grid-template-columns:1fr;gap:32px}
+  .services-grid, .price-grid, .reviews-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .process-grid, .stats-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .projects-grid{grid-template-columns:1fr}
 }
 
 @media(max-width:880px){
-  .nav-links{display:none}
   .sticky-mobile-bar{display:flex}
   .wa{bottom:calc(74px + env(safe-area-inset-bottom,0px))}
   body{padding-bottom:64px}
+  .header-quote{display:none}
   .services-grid, .process-grid, .price-grid, .projects-grid, .reviews-grid, .stats-grid{
     grid-template-columns:1fr;
   }
+  .enquiry-card{padding:22px 16px !important}
 }
 
 .rv{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
@@ -794,7 +847,7 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:.9rem;border-top:1px soli
       <img src="/logo.png" alt="Saint Academy logo" width="38" height="38" onerror="this.src='/src/assets/images/saint_academy_og_preview_1793093010007.jpg'">
       <span>SAINT ACADEMY</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Primary">
       <a href="#services">Services</a>
       <a href="#process">Process</a>
       <a href="#pricing">Pricing</a>
@@ -804,9 +857,25 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:.9rem;border-top:1px soli
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-actions">
-      <a class="btn sm track-wa" data-source="header_quote" href="https://wa.me/263788762019?text=Hi%20Saint%20Academy%2C%20I%20would%20like%20to%20request%20a%20free%20quote%20for%20a%20project." target="_blank" rel="noreferrer">Get a Quote</a>
+      <a class="btn sm track-wa header-quote" data-source="header_quote" href="https://wa.me/263788762019?text=Hi%20Saint%20Academy%2C%20I%20would%20like%20to%20request%20a%20free%20quote%20for%20a%20project." target="_blank" rel="noreferrer">Get a Quote</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteMenu" aria-label="Open menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
     </div>
   </div>
+  <nav class="mobile-menu" id="siteMenu" hidden aria-label="Sections">
+    <div class="mobile-menu-inner">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#work">Work</a>
+      <a href="#demo">Live Demo</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </nav>
 </header>
 
 <main>
@@ -820,12 +889,6 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:.9rem;border-top:1px soli
       <div class="cta rv">
         <a class="btn track-wa" data-source="hero_quote" href="https://wa.me/263788762019?text=Hi%20Saint%20Academy%2C%20I%20want%20to%20get%20a%20free%20quote%20for%20websites%20and%20chatbots." target="_blank" rel="noreferrer">
           Get a Free Quote
-        </a>
-        <a class="btn ghost" href="#demo">
-          Try Live Demo ↓
-        </a>
-        <a class="btn ghost track-wa" data-source="hero_tobbaco" href="https://wa.me/263788762019?text=Hi%20Tobbaco%20AI%2C%20I%20would%20like%20to%20diagnose%20a%20crop%20leaf%20photo." target="_blank" rel="noreferrer">
-          💬 Try Tobbaco AI on WhatsApp
         </a>
       </div>
     </div>
@@ -1125,9 +1188,6 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:.9rem;border-top:1px soli
         </p>
 
         <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:28px">
-          <a class="btn green track-wa" data-source="demo_whatsapp_direct" href="https://wa.me/263788762019?text=Hi%20Tobbaco%20AI%2C%20I%20would%20like%20to%20test%20the%20live%20leaf%20diagnosis%20bot." target="_blank" rel="noreferrer">
-            <span>💬 Try Tobbaco AI Live on WhatsApp</span>
-          </a>
           <button class="btn ghost" id="play" style="align-self:flex-start">
             <span>▶ Replay Simulated Preview</span>
           </button>
@@ -1301,10 +1361,10 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:.9rem;border-top:1px soli
 <!-- 10. DIRECT CONTACT FORM -->
 <section id="contact">
   <div class="wrap">
-    <div style="border:1px solid var(--line);background:var(--card-solid);padding:38px;border-radius:26px;max-width:740px;margin:0 auto;box-shadow:0 20px 50px -20px rgba(0,0,0,.15)" class="rv">
-      <div class="eyebrow mono">Prefer not to message on WhatsApp?</div>
-      <h2 style="font-size:1.9rem;margin-bottom:8px">Send a Direct Project Enquiry</h2>
-      <p style="color:var(--mute);margin-bottom:26px;font-size:.96rem">Fill out this quick form and I will respond to your email or phone within 12 hours.</p>
+    <div class="enquiry-card rv" style="border:1px solid var(--line);background:var(--card-solid);padding:clamp(22px, 3vw, 38px);border-radius:26px;max-width:740px;margin:0 auto;box-shadow:0 20px 50px -20px rgba(0,0,0,.15)">
+      <div class="eyebrow mono">Project enquiry</div>
+      <h2 style="font-size:clamp(1.45rem, 3vw, 1.9rem);margin-bottom:8px">Send a Direct Project Enquiry</h2>
+      <p style="color:var(--mute);margin-bottom:26px;font-size:.96rem">Fill this in and press send. WhatsApp opens with your message ready — press Send there so it actually reaches Saint Academy.</p>
 
       <form id="enquiryForm" onsubmit="handleFormSubmit(event)">
         <div class="form-group">
@@ -1341,7 +1401,7 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:.9rem;border-top:1px soli
 
         <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
           <button type="submit" class="btn" id="submitBtn">
-            <span>Submit Enquiry</span>
+            Send on WhatsApp
           </button>
           <span style="font-size:.88rem;color:var(--mute)">Or instant WhatsApp: <strong>+263 78 876 2019</strong></span>
         </div>
@@ -2008,7 +2068,48 @@ function sendReviewViaWhatsApp(){
   window.open(url, '_blank');
 }
 
-// Direct Enquiry Form Handler
+function setMenuOpen(open){
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('siteMenu');
+  if(!toggle || !menu) return;
+  menu.hidden = !open;
+  toggle.classList.toggle('is-open', open);
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+
+(function(){
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('siteMenu');
+  if(!toggle || !menu) return;
+  toggle.addEventListener('click', function(){
+    setMenuOpen(menu.hidden);
+  });
+  menu.addEventListener('click', function(e){
+    var link = e.target.closest('a');
+    if(!link) return;
+    var href = link.getAttribute('href') || '';
+    if(href.charAt(0) === '#'){
+      var target = document.querySelector(href);
+      if(target){
+        e.preventDefault();
+        setMenuOpen(false);
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        history.pushState(null, '', href);
+        return;
+      }
+    }
+    setMenuOpen(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') setMenuOpen(false);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 980) setMenuOpen(false);
+  });
+})();
+
+// Enquiry opens WhatsApp with the message filled in. Nothing is sent until the visitor presses Send there.
 function handleFormSubmit(e){
   e.preventDefault();
   var name = document.getElementById('fName').value.trim();
@@ -2016,24 +2117,24 @@ function handleFormSubmit(e){
   var email = document.getElementById('fEmail').value.trim();
   var service = document.getElementById('fService').value;
   var msg = document.getElementById('fMsg').value.trim();
-
   var feedback = document.getElementById('formFeedback');
-  var submitBtn = document.getElementById('submitBtn');
+  var lines = [
+    'Hi Saint Academy, I would like to send a project enquiry.',
+    '',
+    'Name: ' + name,
+    'Phone: ' + phone
+  ];
+  if(email) lines.push('Email: ' + email);
+  lines.push('Service: ' + service, '', msg);
+  var url = 'https://wa.me/263788762019?text=' + encodeURIComponent(lines.join('\n'));
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Submitting…';
+  window.open(url, '_blank');
 
-  setTimeout(function(){
-    feedback.style.display = 'block';
-    feedback.style.background = 'rgba(16,185,129,.15)';
-    feedback.style.border = '1px solid var(--green)';
-    feedback.style.color = 'var(--ink)';
-    feedback.innerHTML = '<strong>Enquiry Received!</strong> Thank you ' + escapeHtml(name) + '. I have logged your request for <em>' + escapeHtml(service) + '</em> and will reach out via WhatsApp/email within 12 hours.<br><br><a class="btn sm green" style="color:#fff;text-decoration:none" href="https://wa.me/263788762019?text=' + encodeURIComponent('Hi Saint Academy, I just submitted an enquiry on your site:\nName: ' + name + '\nPhone: ' + phone + '\nService: ' + service + '\nMessage: ' + msg) + '" target="_blank">Click here to also fast-track via WhatsApp →</a>';
-    
-    document.getElementById('enquiryForm').reset();
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Another Enquiry';
-  }, 600);
+  feedback.style.display = 'block';
+  feedback.style.background = 'rgba(37,168,90,.12)';
+  feedback.style.border = '1px solid #25a85a';
+  feedback.style.color = 'var(--ink)';
+  feedback.innerHTML = '<strong>Press Send on WhatsApp.</strong> Your enquiry is written in the chat that just opened. It only reaches Saint Academy after you press Send.<br><br><a class="btn sm green" style="color:#fff;text-decoration:none" href="' + url + '" target="_blank" rel="noreferrer">Open WhatsApp and send</a>';
 }
 
 // Safely initialize review rotation and skeletons when DOM is ready
