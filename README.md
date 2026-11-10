@@ -13,18 +13,34 @@ npm run dev
 
 Open http://localhost:3000.
 
+## Deploy on Cloudflare Pages
+
+Use this when the Cloudflare dashboard product is **Pages** (for example a project named `DANMOY_STEEL` or `saintacademy` connected to this GitHub repo).
+
+| Setting | Value |
+| --- | --- |
+| Framework preset | None |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Root directory | `/` (repo root) |
+| Deploy command | *(leave empty — Pages publishes `dist` automatically)* |
+
+Do **not** set the build command to `npm run deploy` or `npx wrangler deploy` on Pages. Wrangler needs a separate API token and uploads the whole Worker; Pages only needs the static files in `dist/`.
+
+Node **20+** is required (see `.node-version`). After `npm run build`, `public/_redirects` is copied into `dist/` so unknown paths serve `index.html` (same behavior as Wrangler SPA mode).
+
 ## Deploy on Cloudflare Workers
 
-This site is deployed as [Workers static assets](https://developers.cloudflare.com/workers/static-assets/). There is no Worker script. `npm run build` copies the page and images into `dist/`, and Wrangler uploads only that folder.
+This site can also deploy as [Workers static assets](https://developers.cloudflare.com/workers/static-assets/). There is no Worker script. `npm run build` copies the page and images into `dist/`, and Wrangler uploads only that folder.
 
-In the Cloudflare Workers Builds settings for this repo, use:
+In the Cloudflare **Workers Builds** settings for this repo, use:
 
 | Setting | Command |
 | --- | --- |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
 
-The Worker name in `wrangler.jsonc` is `saintacademy`, which matches the project Cloudflare already created.
+The Worker name in `wrangler.jsonc` is `saintacademy`, which must match the Worker in your Cloudflare account (rename it there if your project uses another name).
 
 Deploy from your own machine with:
 
