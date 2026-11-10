@@ -27,5 +27,5 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Saint Academy server running at http://0.0.0.0:${PORT}`);
+  console.log(`Saint Enterprise server running at http://0.0.0.0:${PORT}`);
 });

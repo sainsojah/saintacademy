@@ -1,4 +1,4 @@
-[Saint Academy logoSAINT ACADEMY](#top)
+[Saint Enterprise logoSAINT ENTERPRISE](#top)
 
 [Services](#services)[Work](#work)[Live demo](#demo)[Pricing](#pricing)
 
@@ -8,7 +8,7 @@ Web design · AI chatbots · Zimbabwe & beyond
 
 Inspired by passion, driven by excellence. I build fast, mobile-friendly websites and WhatsApp chatbots that answer customers, capture leads and sell, even while you sleep.
 
-[Get a free quote](https://wa.me/263788762019?text=Hi%20Saint%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20chatbots%20and%20websites.)[Try a live bot](#demo)
+[Get a free quote](https://wa.me/263788762019?text=Hi%20Saint%20Enterprise%2C%20I%20would%20like%20to%20enquire%20about%20chatbots%20and%20websites.)[Try a live bot](#demo)
 
 **0**Live systems built
 
@@ -56,7 +56,7 @@ Logistics · Web app
 Trips, drivers, trucks, billing, payroll and a "where revenue goes" breakdown with PDF export.
 
 DashboardsRole-based\
-[Visit app →](https://truckana.fbktraders.com/)
+[Visit app →](https://truckana.com/)
 
 Agriculture · AI bot
 
@@ -115,7 +115,7 @@ $80~~$200~~
 - Business email
 - SEO basics
 
-[Get a free quote](https://wa.me/263788762019?text=Hi%20Saint%20Academy%2C%20I%20want%20a%20website)
+[Get a free quote](https://wa.me/263788762019?text=Hi%20Saint%20Enterprise%2C%20I%20want%20a%20website)
 
 ### WhatsApp & Web Chatbots
 
@@ -128,7 +128,7 @@ $150~~$200~~
 - Human handover
 - CRM / Sheets / email sync
 
-[Get a free consultation](https://wa.me/263788762019?text=Hi%20Saint%20Academy%2C%20I%20want%20a%20chatbot)
+[Get a free consultation](https://wa.me/263788762019?text=Hi%20Saint%20Enterprise%2C%20I%20want%20a%20chatbot)
 
 Perfect for salons, clinics, restaurants, real estate, e-commerce, schools and service businesses.
 
@@ -136,8 +136,8 @@ Perfect for salons, clinics, restaurants, real estate, e-commerce, schools and s
 
 Tell me what slows you down. I'll show you what to automate.
 
-[Message me on WhatsApp](https://wa.me/263788762019?text=Hi%20Saint%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20chatbots%20and%20websites.)
+[Message me on WhatsApp](https://wa.me/263788762019?text=Hi%20Saint%20Enterprise%2C%20I%20would%20like%20to%20enquire%20about%20chatbots%20and%20websites.)
 
-© Saint Academy · Inspired by passion, driven by excellence. · WhatsApp +263 78 876 2019
+© Saint Enterprise · Inspired by passion, driven by excellence. · WhatsApp +263 78 876 2019
 
-[💬](https://wa.me/263788762019?text=Hi%20Saint%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20chatbots%20and%20websites.)
+[💬](https://wa.me/263788762019?text=Hi%20Saint%20Enterprise%2C%20I%20would%20like%20to%20enquire%20about%20chatbots%20and%20websites.)
