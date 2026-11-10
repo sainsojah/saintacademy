@@ -1,6 +1,6 @@
-# Saint Academy
+# Saint Enterprise
 
-Marketing site for Saint Academy: websites from $80 and WhatsApp and web AI chatbots from $150. The live page is a single static `index.html` plus images. Express is only used to preview it on your machine.
+Marketing site for Saint Enterprise: websites from $80 and WhatsApp and web AI chatbots from $150. The live page is a single static `index.html` plus images. Express is only used to preview it on your machine.
 
 ## Run locally
 
