@@ -1,155 +1,138 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saint Enterprise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Saint Enterprise Academy</title>
   
-  <!-- Tailwind CSS & Plugins via CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Tailwind CSS Play CDN for instant testing -->
+  <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Custom Tailwind Configuration -->
-  <script id="tailwind-config">
-    globalThis.tailwind = globalThis.tailwind || {};
-    globalThis.tailwind.config = {
-      darkMode: 'class',
+  <!-- Embedded Tailwind Config -->
+  <script>
+    tailwind.config = {
       theme: {
         extend: {
           colors: {
-            'accent': '#10B981',
-            'light-primary': '#006C49',
-            'light-on-primary': '#FFFFFF',
-            'light-surface': '#F4F7FB', 
-            'light-on-surface': '#181C24',
-            'light-surface-container-lowest': '#FFFFFF',
-            'light-surface-container-low': '#F1F3FF',
-            'light-secondary': '#0058BE',
+            saint: {
+              dark: "#0B0C10",
+              surface: "#1F2833",
+              primary: "#45A29E",
+              secondary: "#66FCF1",
+              accent: "#C5C6C7"
+            },
+            aurora: {
+              blue: "#3b82f6",
+              purple: "#8b5cf6",
+              teal: "#14b8a6"
+            }
           },
-          fontFamily: {
-            'display': ['"Space Grotesk"', 'sans-serif'],
-            'body': ['"Ubuntu"', 'sans-serif'],
+          backgroundImage: {
+            'kinetic-grid': `linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), 
+                             linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
+          },
+          keyframes: {
+            'aurora-shift': {
+              '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+            },
+            'grid-pan': {
+              '0%': { transform: 'translateY(0)' },
+              '100%': { transform: 'translateY(32px)' },
+            }
+          },
+          animation: {
+            'aurora-1': 'aurora-shift 12s ease-in-out infinite',
+            'aurora-2': 'aurora-shift 15s ease-in-out infinite reverse',
+            'aurora-3': 'aurora-shift 18s ease-in-out infinite',
+            'grid-flow': 'grid-pan 3s linear infinite',
           }
-        },
-      },
-    };
+        }
+      }
+    }
   </script>
-
-  <!-- Typography & Material Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
-  
-  <!-- Background Animations & Hover Effects -->
-  <style>
-    .material-symbols-outlined { 
-      display: inline-block; 
-      width: 1em; 
-      height: 1em; 
-      line-height: 1 !important; 
-      vertical-align: middle; 
-    }
-    
-    @keyframes gridDriftMobile {
-      0% { background-position: 0 0; }
-      100% { background-position: 40px 40px; }
-    }
-    
-    .bg-kinetic-grid {
-      background-image:
-        linear-gradient(to right, rgba(0, 88, 190, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 88, 190, 0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-      animation: gridDriftMobile 20s linear infinite;
-    }
-    
-    .bg-pop-aurora {
-      background:
-        radial-gradient(600px circle at 15% 10%, rgba(16, 185, 129, 0.12), transparent 60%),
-        radial-gradient(600px circle at 85% 15%, rgba(0, 88, 190, 0.12), transparent 60%);
-    }
-
-    .hover-lift {
-      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .hover-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px -8px rgba(0, 108, 73, 0.10);
-    }
-  </style>
 </head>
-<body class="bg-light-surface text-light-on-surface font-body antialiased selection:bg-light-primary selection:text-light-on-primary min-h-screen relative overflow-x-hidden">
+<body class="bg-saint-dark selection:bg-saint-primary selection:text-white m-0 p-0">
 
-  <!-- Animated Background Layers -->
-  <div class="pointer-events-none fixed inset-0 z-0 bg-pop-aurora" aria-hidden="true"></div>
-  <div class="pointer-events-none fixed inset-0 z-0 bg-kinetic-grid" aria-hidden="true"></div>
-
-  <!-- Main Content Container -->
-  <main class="relative z-10 container mx-auto px-6 pt-24 pb-16 min-h-screen flex flex-col justify-center">
+  <!-- Main Application Wrapper -->
+  <div class="relative min-h-[100dvh] overflow-hidden text-saint-accent font-sans">
     
-    <!-- Hero Section -->
-    <div class="max-w-3xl mx-auto text-center space-y-6">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-light-surface-container-lowest border border-light-primary/20 text-light-primary text-sm font-medium mb-2 shadow-sm">
-        <span class="material-symbols-outlined text-[16px]">rocket_launch</span>
-        <span>Saint Enterprise 2.0</span>
-      </div>
-      
-      <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight text-light-on-surface leading-tight">
-        Elevate your digital <br/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#006C49] to-[#0058BE]">ecosystem.</span>
-      </h1>
-      
-      <p class="text-lg md:text-xl text-light-on-surface/60 font-body max-w-2xl mx-auto leading-relaxed pt-2">
-        A polished, production-ready environment built with clean spacing,<br class="hidden md:block"/> premium typography, and reusable components.
-      </p>
-
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-        <button class="w-full sm:w-auto px-8 py-3.5 bg-[#006C49] text-white font-medium rounded-xl hover:bg-light-primary/90 transition-colors shadow-sm">
-          Get Started
-        </button>
-        <button class="w-full sm:w-auto px-8 py-3.5 bg-white text-light-on-surface border border-gray-200 font-medium rounded-xl hover:bg-gray-50 transition-colors shadow-sm">
-          View Documentation
-        </button>
-      </div>
+    <!-- BACKGROUND: Aurora Glows -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+      <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-aurora-purple rounded-full mix-blend-screen filter blur-[80px] animate-aurora-1"></div>
+      <div class="absolute top-[20%] right-[-10%] w-[60vw] h-[60vw] bg-aurora-blue rounded-full mix-blend-screen filter blur-[90px] animate-aurora-2"></div>
+      <div class="absolute bottom-[-10%] left-[20%] w-[70vw] h-[70vw] bg-aurora-teal rounded-full mix-blend-screen filter blur-[100px] animate-aurora-3"></div>
     </div>
 
-    <!-- Feature Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 max-w-6xl mx-auto w-full">
-      
-      <!-- Card 1 -->
-      <div class="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover-lift">
-        <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-[#006C49] mb-6">
-          <span class="material-symbols-outlined">design_services</span>
-        </div>
-        <h3 class="font-display font-semibold text-lg mb-3">Premium Design</h3>
-        <p class="text-light-on-surface/60 text-sm leading-relaxed">
-          Built with an imported design language, prioritizing typography and clean spacing.
-        </p>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover-lift">
-        <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-[#0058BE] mb-6">
-          <span class="material-symbols-outlined">link</span>
-        </div>
-        <h3 class="font-display font-semibold text-lg mb-3">Polished Interactions</h3>
-        <p class="text-light-on-surface/60 text-sm leading-relaxed">
-          Subtle hover effects and smooth reveals without overwhelming the user experience.
-        </p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover-lift">
-        <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-[#10B981] mb-6">
-          <span class="material-symbols-outlined">grid_view</span>
-        </div>
-        <h3 class="font-display font-semibold text-lg mb-3">Reusable Components</h3>
-        <p class="text-light-on-surface/60 text-sm leading-relaxed">
-          Modular Tailwind architecture ready for shadcn/ui integration and scaling.
-        </p>
-      </div>
-
+    <!-- BACKGROUND: Kinetic Grid -->
+    <div class="absolute inset-0 z-0 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]">
+      <div class="absolute inset-[-100%] bg-kinetic-grid bg-[length:32px_32px] animate-grid-flow opacity-30"></div>
     </div>
-  </main>
 
+    <!-- FOREGROUND: Content Layout -->
+    <div class="relative z-10 flex flex-col min-h-[100dvh] h-full">
+      
+      <!-- Header -->
+      <header class="flex justify-between items-center p-6 bg-gradient-to-b from-saint-dark/80 to-transparent backdrop-blur-sm">
+        <div class="flex items-center gap-2">
+          <!-- Logo Placeholder -->
+          <div class="w-8 h-8 rounded-lg bg-saint-primary flex items-center justify-center font-bold text-saint-dark shadow-[0_0_15px_rgba(69,162,158,0.5)]">
+            SA
+          </div>
+          <h1 class="text-xl font-semibold tracking-wide text-white">Saint<span class="text-saint-primary">Enterprise</span></h1>
+        </div>
+        <button class="p-2 rounded-full bg-saint-surface/50 border border-white/10 text-white backdrop-blur-md">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </header>
+
+      <!-- Main Scrollable Content -->
+      <main class="flex-1 px-6 pb-28 overflow-y-auto">
+        
+        <!-- Hero Section -->
+        <section class="mt-8 mb-10 text-center">
+          <h2 class="text-3xl font-bold text-white mb-3">Welcome to the Academy</h2>
+          <p class="text-sm text-saint-accent max-w-xs mx-auto">Master modern workflows with kinetic intelligence and enterprise scale.</p>
+        </section>
+
+        <!-- Glassmorphic Dashboard Cards -->
+        <section class="grid grid-cols-1 gap-4">
+          <!-- Card 1 -->
+          <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.05] backdrop-blur-xl shadow-xl transition-transform active:scale-95">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-medium text-white">Active Modules</h3>
+              <span class="px-2 py-1 text-xs font-semibold rounded-full bg-saint-primary/20 text-saint-secondary">Live</span>
+            </div>
+            <p class="text-2xl font-bold text-white">12 <span class="text-sm font-normal text-saint-accent">/ 15 Completed</span></p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.05] backdrop-blur-xl shadow-xl transition-transform active:scale-95">
+            <h3 class="font-medium text-white mb-3">Quick Actions</h3>
+            <div class="grid grid-cols-2 gap-3">
+              <button class="py-3 rounded-xl bg-saint-surface border border-white/10 text-sm font-medium text-white hover:bg-white/10 transition-colors">Start Course</button>
+              <button class="py-3 rounded-xl bg-saint-primary text-saint-dark font-medium text-sm hover:bg-saint-secondary transition-colors shadow-[0_0_20px_rgba(69,162,158,0.3)]">View Reports</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Floating Bottom Navigation (Mobile) -->
+      <nav class="fixed bottom-6 left-6 right-6 p-4 rounded-2xl bg-saint-dark/80 border border-white/10 backdrop-blur-2xl shadow-2xl flex justify-around items-center z-50">
+        <button class="text-saint-primary flex flex-col items-center gap-1 transition-transform active:scale-90">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        </button>
+        <button class="text-saint-accent hover:text-white flex flex-col items-center gap-1 transition-transform active:scale-90">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </button>
+        <button class="text-saint-accent hover:text-white flex flex-col items-center gap-1 transition-transform active:scale-90">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        </button>
+      </nav>
+      
+    </div>
+  </div>
 </body>
 </html>
