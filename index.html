@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saint Enterprise</title>
   
-  <!-- Tailwind & Plugins -->
+  <!-- Tailwind CSS & Plugins via CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   
-  <!-- Imported Design System -->
+  <!-- Custom Tailwind Configuration -->
   <script id="tailwind-config">
     globalThis.tailwind = globalThis.tailwind || {};
     globalThis.tailwind.config = {
@@ -19,139 +19,131 @@
             'accent': '#10B981',
             'light-primary': '#006C49',
             'light-on-primary': '#FFFFFF',
-            'light-surface': '#F9F9FF',
+            'light-surface': '#F4F7FB', 
             'light-on-surface': '#181C24',
             'light-surface-container-lowest': '#FFFFFF',
             'light-surface-container-low': '#F1F3FF',
             'light-secondary': '#0058BE',
           },
-          borderRadius: {
-            'sm': '4px', 'DEFAULT': '8px', 'md': '12px', 'lg': '16px', 'xl': '24px', 'full': '9999px',
-          },
           fontFamily: {
             'display': ['"Space Grotesk"', 'sans-serif'],
             'body': ['"Ubuntu"', 'sans-serif'],
-          },
-          transitionDuration: {
-            'state-change': '150ms',
-            'card-hover': '280ms',
-          },
-          transitionTimingFunction: {
-            'card-hover': 'cubic-bezier(0.22, 1, 0.36, 1)',
-          },
+          }
         },
       },
     };
   </script>
 
-  <!-- Typography & Icons -->
+  <!-- Typography & Material Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
   
-  <!-- Subtle Animations -->
+  <!-- Background Animations & Hover Effects -->
   <style>
-    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; vertical-align: middle; }
+    .material-symbols-outlined { 
+      display: inline-block; 
+      width: 1em; 
+      height: 1em; 
+      line-height: 1 !important; 
+      vertical-align: middle; 
+    }
     
     @keyframes gridDriftMobile {
       0% { background-position: 0 0; }
-      100% { background-position: 36px 36px; }
+      100% { background-position: 40px 40px; }
     }
+    
     .bg-kinetic-grid {
       background-image:
-        linear-gradient(to right, rgba(0, 108, 73, 0.075) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 108, 73, 0.075) 1px, transparent 1px);
-      background-size: 36px 36px;
-      animation: gridDriftMobile 16s linear infinite;
+        linear-gradient(to right, rgba(0, 88, 190, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 88, 190, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridDriftMobile 20s linear infinite;
     }
     
     .bg-pop-aurora {
       background:
-        radial-gradient(500px circle at 15% 6%, rgba(16, 185, 129, 0.18), transparent 60%),
-        radial-gradient(450px circle at 85% 24%, rgba(0, 88, 190, 0.14), transparent 60%);
+        radial-gradient(600px circle at 15% 10%, rgba(16, 185, 129, 0.12), transparent 60%),
+        radial-gradient(600px circle at 85% 15%, rgba(0, 88, 190, 0.12), transparent 60%);
     }
 
-    /* Polish hover effects */
     .hover-lift {
       transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
     }
     .hover-lift:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 24px -8px rgba(0, 108, 73, 0.15);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .bg-kinetic-grid, .hover-lift { animation: none; transition: none; }
+      box-shadow: 0 12px 24px -8px rgba(0, 108, 73, 0.10);
     }
   </style>
 </head>
 <body class="bg-light-surface text-light-on-surface font-body antialiased selection:bg-light-primary selection:text-light-on-primary min-h-screen relative overflow-x-hidden">
 
-  <!-- Background Layers -->
+  <!-- Animated Background Layers -->
   <div class="pointer-events-none fixed inset-0 z-0 bg-pop-aurora" aria-hidden="true"></div>
   <div class="pointer-events-none fixed inset-0 z-0 bg-kinetic-grid" aria-hidden="true"></div>
 
-  <!-- Main Content -->
+  <!-- Main Content Container -->
   <main class="relative z-10 container mx-auto px-6 pt-24 pb-16 min-h-screen flex flex-col justify-center">
     
     <!-- Hero Section -->
-    <div class="max-w-3xl mx-auto text-center space-y-8 animate-msg-in">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-light-surface-container-low border border-light-primary/20 text-light-primary text-sm font-medium mb-4">
+    <div class="max-w-3xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-light-surface-container-lowest border border-light-primary/20 text-light-primary text-sm font-medium mb-2 shadow-sm">
         <span class="material-symbols-outlined text-[16px]">rocket_launch</span>
         <span>Saint Enterprise 2.0</span>
       </div>
       
-      <h1 class="font-display text-4xl md:text-6xl font-bold tracking-tight text-light-on-surface leading-tight">
-        Elevate your digital <br class="hidden md:block"/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-light-primary to-light-secondary">ecosystem.</span>
+      <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight text-light-on-surface leading-tight">
+        Elevate your digital <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#006C49] to-[#0058BE]">ecosystem.</span>
       </h1>
       
-      <p class="text-lg md:text-xl text-light-on-surface/70 font-body max-w-2xl mx-auto leading-relaxed">
-        A polished, production-ready environment built with clean spacing, premium typography, and reusable components.
+      <p class="text-lg md:text-xl text-light-on-surface/60 font-body max-w-2xl mx-auto leading-relaxed pt-2">
+        A polished, production-ready environment built with clean spacing,<br class="hidden md:block"/> premium typography, and reusable components.
       </p>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-        <button class="w-full sm:w-auto px-8 py-3.5 bg-light-primary text-light-on-primary font-medium rounded-lg hover:bg-light-primary/90 transition-colors shadow-sm active:scale-[0.98]">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+        <button class="w-full sm:w-auto px-8 py-3.5 bg-[#006C49] text-white font-medium rounded-xl hover:bg-light-primary/90 transition-colors shadow-sm">
           Get Started
         </button>
-        <button class="w-full sm:w-auto px-8 py-3.5 bg-light-surface-container-lowest text-light-on-surface border border-light-on-surface/10 font-medium rounded-lg hover:bg-light-surface-container-low transition-colors active:scale-[0.98]">
+        <button class="w-full sm:w-auto px-8 py-3.5 bg-white text-light-on-surface border border-gray-200 font-medium rounded-xl hover:bg-gray-50 transition-colors shadow-sm">
           View Documentation
         </button>
       </div>
     </div>
 
-    <!-- Features Grid (shadcn-inspired cards) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24">
+    <!-- Feature Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 max-w-6xl mx-auto w-full">
       
       <!-- Card 1 -->
-      <div class="bg-light-surface-container-lowest border border-light-on-surface/5 p-6 rounded-xl hover-lift">
-        <div class="w-10 h-10 rounded-lg bg-light-primary/10 flex items-center justify-center text-light-primary mb-4">
+      <div class="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover-lift">
+        <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-[#006C49] mb-6">
           <span class="material-symbols-outlined">design_services</span>
         </div>
-        <h3 class="font-display font-semibold text-lg mb-2">Premium Design</h3>
-        <p class="text-light-on-surface/70 text-sm leading-relaxed">
+        <h3 class="font-display font-semibold text-lg mb-3">Premium Design</h3>
+        <p class="text-light-on-surface/60 text-sm leading-relaxed">
           Built with an imported design language, prioritizing typography and clean spacing.
         </p>
       </div>
 
       <!-- Card 2 -->
-      <div class="bg-light-surface-container-lowest border border-light-on-surface/5 p-6 rounded-xl hover-lift">
-        <div class="w-10 h-10 rounded-lg bg-light-secondary/10 flex items-center justify-center text-light-secondary mb-4">
-          <span class="material-symbols-outlined">animation</span>
+      <div class="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover-lift">
+        <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-[#0058BE] mb-6">
+          <span class="material-symbols-outlined">link</span>
         </div>
-        <h3 class="font-display font-semibold text-lg mb-2">Polished Interactions</h3>
-        <p class="text-light-on-surface/70 text-sm leading-relaxed">
+        <h3 class="font-display font-semibold text-lg mb-3">Polished Interactions</h3>
+        <p class="text-light-on-surface/60 text-sm leading-relaxed">
           Subtle hover effects and smooth reveals without overwhelming the user experience.
         </p>
       </div>
 
       <!-- Card 3 -->
-      <div class="bg-light-surface-container-lowest border border-light-on-surface/5 p-6 rounded-xl hover-lift">
-        <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent mb-4">
-          <span class="material-symbols-outlined">view_cozy</span>
+      <div class="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover-lift">
+        <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-[#10B981] mb-6">
+          <span class="material-symbols-outlined">grid_view</span>
         </div>
-        <h3 class="font-display font-semibold text-lg mb-2">Reusable Components</h3>
-        <p class="text-light-on-surface/70 text-sm leading-relaxed">
+        <h3 class="font-display font-semibold text-lg mb-3">Reusable Components</h3>
+        <p class="text-light-on-surface/60 text-sm leading-relaxed">
           Modular Tailwind architecture ready for shadcn/ui integration and scaling.
         </p>
       </div>
