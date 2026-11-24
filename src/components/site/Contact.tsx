@@ -5,18 +5,11 @@ import { Card } from "@/components/ui/card";
 import { Field, Input, Select, Textarea } from "@/components/ui/input";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { SERVICE_OPTIONS } from "@/lib/content";
 import { EMAIL, PHONE_DISPLAY, wa } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-const SERVICES = [
-  "Website, from $80",
-  "WhatsApp and web chatbot, from $150",
-  "Website and chatbot together",
-  "Care plan, $35 a month",
-  "Custom operational software",
-];
-
-export function Contact() {
+export function Contact({ defaultService }: { defaultService?: string }) {
   const [sentUrl, setSentUrl] = useState<string | null>(null);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -36,8 +29,8 @@ export function Contact() {
       <div className="mx-auto max-w-7xl px-page-margin-mobile md:px-page-margin">
         <div className="grid grid-cols-1 gap-gutter-xl lg:grid-cols-12">
           <div className="flex flex-col justify-between gap-gutter-lg lg:col-span-5">
-            <SectionHeading className="mb-0" eyebrow="Project enquiry" title="Tell us what to build."
-              lede="Write it here. WhatsApp opens with the message ready. It reaches Saint Enterprise when you press Send." />
+            <SectionHeading className="mb-0" eyebrow="Contact" title="Tell us what to build."
+              lede="Describe what you need. WhatsApp opens with your message ready to send." />
             <Card className="flex flex-col gap-gutter-md p-gutter-lg">
               <div className="flex flex-col gap-gutter-xs">
                 <span className="font-mono text-mono-sm uppercase text-on-surface-variant">WhatsApp</span>
@@ -48,8 +41,8 @@ export function Contact() {
                 <a href={`mailto:${EMAIL}`} className="break-all font-body text-body-md text-on-surface transition-colors hover:text-primary">{EMAIL}</a>
               </div>
               <div className="flex flex-col gap-gutter-xs">
-                <span className="font-mono text-mono-sm uppercase text-on-surface-variant">Studio</span>
-                <span className="font-body text-body-md text-on-surface-variant">Harare, Zimbabwe · local and international work</span>
+                <span className="font-mono text-mono-sm uppercase text-on-surface-variant">Location</span>
+                <span className="font-body text-body-md text-on-surface-variant">Harare, Zimbabwe</span>
               </div>
             </Card>
           </div>
@@ -68,18 +61,20 @@ export function Contact() {
                   </div>
                 </Field>
                 <Field label="What you need" htmlFor="f-service">
-                  <Select id="f-service" name="service" required>{SERVICES.map((s) => <option key={s}>{s}</option>)}</Select>
+                  <Select id="f-service" name="service" required defaultValue={defaultService ?? SERVICE_OPTIONS[0]}>
+                    {SERVICE_OPTIONS.map((s) => <option key={s}>{s}</option>)}
+                  </Select>
                 </Field>
               </div>
               <Field label="The brief" htmlFor="f-brief">
-                <Textarea id="f-brief" name="brief" required rows={4} placeholder="Tell us what slows the business down, and when it should be live." />
+                <Textarea id="f-brief" name="brief" required rows={4} placeholder="What slows the business down, and when should it be live?" />
               </Field>
               <Button type="submit" size="lg" className="w-full">
                 Send on WhatsApp <ArrowRight className={cn("h-4 w-4", nudge)} aria-hidden="true" />
               </Button>
               {sentUrl && (
                 <div role="status" className="animate-fade-up rounded-md border border-primary/40 bg-primary/10 p-gutter-md font-body text-body-md text-on-surface">
-                  <strong className="font-medium">Press Send in WhatsApp.</strong> The enquiry is written in the chat that just opened and arrives after you press Send.{" "}
+                  <strong className="font-medium">Press Send in WhatsApp.</strong> Your enquiry reaches us once you press Send.{" "}
                   <a href={sentUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-primary underline underline-offset-4">Open WhatsApp again</a>
                 </div>
               )}

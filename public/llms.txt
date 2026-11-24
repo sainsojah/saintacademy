@@ -1,0 +1,24 @@
+# Saint Enterprise
+
+> Saint Enterprise is a Harare, Zimbabwe studio that builds business websites, WhatsApp and website chatbots, and custom operational software for companies in Zimbabwe and abroad.
+
+## Services
+- [Website design](https://saintacademy.com/website-design-zimbabwe/): Mobile-first business websites from $80. Includes a custom design, a .com domain for the first year, hosting, SSL, branded business email, SEO basics and a 30-day warranty. Typically live in 3–5 business days once content is approved.
+- [WhatsApp and web chatbots](https://saintacademy.com/whatsapp-chatbot-zimbabwe/): Chatbots on the WhatsApp Business Cloud API and on websites, from $150. They answer questions, take bookings and orders, capture leads, hand over to a person, and sync to Google Sheets, a CRM or email. Messaging fees are paid to Meta on the client's own account.
+- [Operational software](https://saintacademy.com/business-software-zimbabwe/): Custom fleet desks, ledgers, client portals and live reports. Scoped and priced per project after a short consultation.
+
+## Pricing
+- Website: $80
+- Chatbot: $150
+- Care plan (hosting, updates, monitoring, backups): $35 per month
+- Custom software: scoped per project
+
+## Facts
+- Location: Harare, Zimbabwe. Serves Zimbabwe and international clients.
+- Contact: WhatsApp +263 78 876 2019, email saintsprinting1@gmail.com
+- Ownership: clients own the source code, domain, hosting and accounts.
+- Selected work: Truckana (fleet platform, truckana.com), FBK Forex Broker Killers (trading platform, fbktraders.com), Tobacco AI (leaf diagnosis on WhatsApp), ZIMSEC Maths (O-Level revision assistant on WhatsApp).
+
+## Pages
+- [Home](https://saintacademy.com/)
+- [Privacy policy](https://saintacademy.com/privacy/)

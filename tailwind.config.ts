@@ -100,7 +100,6 @@ export default {
         "surface-enter": "cubic-bezier(0.22, 1, 0.36, 1)",
       },
       keyframes: {
-        marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
         "fade-up": { from: { opacity: "0", transform: "translateY(10px)" }, to: { opacity: "1", transform: "none" } },
         "msg-in": { from: { opacity: "0", transform: "translateY(8px) scale(0.98)" }, to: { opacity: "1", transform: "none" } },
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
@@ -108,7 +107,6 @@ export default {
         dot: { "0%,80%,100%": { opacity: "0.3" }, "40%": { opacity: "1" } },
       },
       animation: {
-        marquee: "marquee 24s linear infinite",
         "fade-up": "fade-up 500ms cubic-bezier(0.22,1,0.36,1) both",
         "msg-in": "msg-in 320ms cubic-bezier(0.22,1,0.36,1) both",
         "accordion-down": "accordion-down 280ms cubic-bezier(0.22,1,0.36,1)",

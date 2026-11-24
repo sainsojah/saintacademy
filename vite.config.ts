@@ -7,5 +7,6 @@ export default defineConfig({
   resolve: {
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
-  build: { target: "es2020", sourcemap: false },
+  // Never inline assets: the client and SSR bundles must reference identical URLs for hydration.
+  build: { target: "es2020", sourcemap: false, assetsInlineLimit: 0 },
 });

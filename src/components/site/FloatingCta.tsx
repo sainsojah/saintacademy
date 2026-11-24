@@ -19,7 +19,7 @@ export function FloatingCta() {
       >
         <div className="flex flex-col leading-tight">
           <strong className="font-headline text-title-md text-on-surface">Saint Enterprise</strong>
-          <span className="font-body text-body-sm text-on-surface-variant">Websites and AI systems</span>
+          <span className="font-body text-body-sm text-on-surface-variant">Websites, chatbots, software</span>
         </div>
         <Button asChild size="md">
           <a href={wa("Hi Saint Enterprise, I need a website or a chatbot.")} target="_blank" rel="noopener noreferrer">Get a quote</a>
@@ -29,7 +29,7 @@ export function FloatingCta() {
       <a
         href={wa("Hi Saint Enterprise, I would like to enquire about a website or a chatbot.")}
         target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-40 hidden h-12 w-12 items-center justify-center rounded-full bg-primary text-on-primary transition-transform duration-card-hover ease-card-hover hover:-translate-y-1 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:flex"
+        className="fixed bottom-6 right-6 z-40 hidden h-12 w-12 items-center justify-center rounded-full bg-primary text-on-primary transition-[background-color,transform] duration-state-change hover:bg-primary/90 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:flex"
       >
         <WhatsAppIcon className="h-6 w-6" />
       </a>

@@ -1,8 +1,9 @@
 # Saint Enterprise
 
-Marketing site for Saint Enterprise: websites from $80, WhatsApp and web AI chatbots from $150.
+Marketing site for Saint Enterprise: websites from $80, WhatsApp and web chatbots from $150, custom software.
 
-**Stack:** Vite · React 18 · TypeScript · Tailwind CSS 3 · shadcn/ui (Radix) · lucide-react.
+**Stack:** Vite · React 18 · TypeScript · React Router · Tailwind CSS 3 · shadcn/ui (Radix) · lucide-react.
+Every page is prerendered to static HTML at build time for SEO and AI crawlers.
 Deployed to Cloudflare Workers static assets (`dist/`).
 
 ## Run locally
@@ -12,7 +13,7 @@ Requires Node.js 20+.
 ```bash
 npm install
 npm run dev        # http://localhost:5173
-npm run build      # type-check + production build into dist/
+npm run build      # type-check, build, prerender pages and sitemap into dist/
 npm run preview    # serve dist/ locally
 ```
 
@@ -31,21 +32,23 @@ Or from your machine: `npx wrangler login && npm run deploy`.
 
 | Path | What it is |
 | --- | --- |
-| `tailwind.config.ts` | Design-system tokens: colours, type scale, spacing, radii, motion |
-| `src/index.css` | Light and dark colour variables, background grid, reveal styles |
-| `src/lib/content.ts` | **All copy**: services, pricing, FAQ, reviews. Edit text here |
-| `src/lib/site.ts` | Phone, email, nav links, social links, `wa()` WhatsApp link helper |
-| `src/components/ui/` | shadcn-style primitives: Button, Badge, Card, Accordion, Tabs, Dialog, Input |
-| `src/components/site/` | Page sections (Hero, Services, Pricing, Work, Demo, Reviews, FAQ, Contact...) |
-| `src/assets/images/` | Project images (imported, so they get hashed and cached) |
-| `public/` | `logo.png`, `og-image.jpg`, `robots.txt`, `sitemap.xml` (copied to the site root) |
+| `src/lib/config.ts` | **Your IDs**: Search Console, Bing, Clarity, Google Business Profile. See `docs/SEO-SETUP.md` |
+| `src/lib/services.ts` | The three service landing pages: copy, meta title and description, FAQs |
+| `src/lib/content.ts` | Pricing, process steps, FAQs, selected work |
+| `src/lib/seo.ts` | Meta tags and structured data for every page |
+| `src/lib/site.ts` | Phone, email, nav and social links, `wa()` WhatsApp link helper |
+| `scripts/prerender.mjs` | Writes each page as static HTML, plus `sitemap.xml` |
+| `tailwind.config.ts`, `src/index.css` | Design-system tokens, light and dark |
+| `src/components/ui/` | shadcn-style primitives (Button, Badge, Card, Accordion, Input) |
+| `src/components/site/` | Page sections and pages |
+| `public/` | `logo.png`, `og-image.jpg`, `robots.txt`, `llms.txt` |
 
 ## Design system
 
 Tokens follow the Stitch "Saint Enterprise" system. Light (`#F9F9FF` surface, `#006C49` primary) is the
 default; dark (`#0F131C`, `#4EDEA3`) follows the visitor's OS and can be toggled in the header.
 Use token classes (`bg-surface-container-low`, `text-on-surface-variant`, `font-mono text-mono-sm`) rather
-than raw hex values. Cards lift 4px on hover, buttons lift 2px and settle on press, sections fade up once
-on scroll. Everything respects `prefers-reduced-motion`.
+than raw hex values. The look is flat and professional: no shadows or lifting effects, colour changes on hover, and a short fade as
+sections scroll in. Everything respects `prefers-reduced-motion`.
 
 Add more shadcn components with `npx shadcn@latest add <component>` (`components.json` is set up).

@@ -21,13 +21,3 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement>, Varia
 export function Badge({ className, variant, ...props }: BadgeProps) {
   return <span className={cn(badgeVariants({ variant }), className)} {...props} />;
 }
-
-/** Pulsing "live" dot used in status badges. */
-export function LiveDot({ className }: { className?: string }) {
-  return (
-    <span className={cn("relative flex h-2 w-2", className)} aria-hidden="true">
-      <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-40 motion-safe:animate-ping" />
-      <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-    </span>
-  );
-}

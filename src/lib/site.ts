@@ -1,3 +1,5 @@
+import { GBP_URL } from "./config";
+
 export const PHONE_E164 = "263788762019";
 export const PHONE_DISPLAY = "+263 78 876 2019";
 export const EMAIL = "saintsprinting1@gmail.com";
@@ -8,12 +10,12 @@ export function wa(text?: string) {
 }
 
 export const NAV = [
-  { href: "#services", label: "Services" },
-  { href: "#work", label: "Work" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#demo", label: "Live demo" },
-  { href: "#reviews", label: "Reviews" },
-  { href: "#faq", label: "FAQ" },
+  { to: "/website-design-zimbabwe/", label: "Websites" },
+  { to: "/whatsapp-chatbot-zimbabwe/", label: "Chatbots" },
+  { to: "/business-software-zimbabwe/", label: "Software" },
+  { to: "/#work", label: "Work" },
+  { to: "/#pricing", label: "Pricing" },
+  { to: "/#faq", label: "FAQ" },
 ] as const;
 
 export const SOCIALS = [
@@ -23,7 +25,13 @@ export const SOCIALS = [
   { label: "YouTube", href: "https://www.youtube.com/channel/UCrVNskwUWep96EBqH6Fc0pA" },
 ] as const;
 
-/** Counts WhatsApp link clicks on this browser (same key as the old site). */
+export const SAME_AS = [
+  `https://wa.me/${PHONE_E164}`,
+  ...SOCIALS.map((s) => s.href),
+  ...(GBP_URL ? [GBP_URL] : []),
+];
+
+/** Counts WhatsApp link clicks on this browser and reports them to Clarity when it is installed. */
 export function trackWhatsAppClicks() {
   const onClick = (e: MouseEvent) => {
     const link = (e.target as HTMLElement | null)?.closest?.('a[href*="wa.me"]');
@@ -31,9 +39,10 @@ export function trackWhatsAppClicks() {
     try {
       const n = parseInt(localStorage.getItem("sa_wa_clicks") || "0", 10) + 1;
       localStorage.setItem("sa_wa_clicks", String(n));
-    } catch {
-      /* storage unavailable */
-    }
+    } catch { /* storage unavailable */ }
+    try {
+      (window as unknown as { clarity?: (...a: unknown[]) => void }).clarity?.("event", "whatsapp_click");
+    } catch { /* ignore */ }
   };
   document.addEventListener("click", onClick);
   return () => document.removeEventListener("click", onClick);

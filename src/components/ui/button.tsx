@@ -5,21 +5,21 @@ import { cn } from "@/lib/utils";
 
 /**
  * Stitch button set: primary / secondary / tonal / outline / ghost / link.
- * Hover lifts 2px, press settles back, arrow icons nudge via `group/btn`.
+ * Colour shifts on hover, a slight press on click; arrows nudge via `group/btn`.
  */
 const buttonVariants = cva(
   "group/btn inline-flex items-center justify-center gap-gutter-sm whitespace-nowrap rounded font-body font-medium " +
     "transition-[transform,background-color,border-color,color,opacity] duration-state-change ease-state-change " +
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface " +
-    "active:translate-y-0 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50",
+    "active:scale-[0.985] disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-on-primary hover:-translate-y-0.5 hover:bg-primary/90",
+        default: "bg-primary text-on-primary hover:bg-primary/90",
         secondary:
           "bg-surface-container-low text-on-surface border border-outline-variant hover:bg-surface-container-high hover:border-primary/60",
         tonal:
-          "bg-surface-container-high text-on-surface border border-outline-variant hover:border-primary hover:-translate-y-0.5",
+          "bg-surface-container-high text-on-surface border border-outline-variant hover:border-primary hover:bg-surface-container-highest",
         outline: "border border-outline-variant bg-transparent text-on-surface hover:border-primary hover:text-primary",
         ghost: "text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface",
         link: "text-primary underline-offset-4 hover:underline px-0",

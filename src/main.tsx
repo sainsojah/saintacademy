@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import "@fontsource/space-grotesk/latin-500.css";
 import "@fontsource/space-grotesk/latin-600.css";
 import "@fontsource/space-grotesk/latin-700.css";
@@ -10,8 +11,15 @@ import "@fontsource/space-mono/latin-700.css";
 import "./index.css";
 import App from "./App";
 
-createRoot(document.getElementById("root")!).render(
+const app = (
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>
 );
+
+const root = document.getElementById("root")!;
+// Pages are prerendered at build time, so hydrate when markup is present.
+if (root.hasChildNodes()) hydrateRoot(root, app);
+else createRoot(root).render(app);
