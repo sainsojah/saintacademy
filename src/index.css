@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Saint Enterprise tokens (RGB triplets so /opacity works) ---------- */
+@layer base {
+  :root {
+    --surface: 249 249 255;
+    --surface-dim: 215 218 229;
+    --surface-bright: 249 249 255;
+    --surface-container-lowest: 255 255 255;
+    --surface-container-low: 241 243 255;
+    --surface-container: 235 237 250;
+    --surface-container-high: 229 232 244;
+    --surface-container-highest: 223 226 238;
+    --surface-variant: 215 230 219;
+    --on-surface: 24 28 36;
+    --on-surface-variant: 60 74 66;
+    --outline: 108 122 113;
+    --outline-variant: 187 202 191;
+    --primary: 0 108 73;
+    --on-primary: 255 255 255;
+    --primary-container: 16 185 129;
+    --on-primary-container: 0 66 43;
+    --secondary: 0 88 190;
+    --on-secondary: 255 255 255;
+    --secondary-container: 33 112 228;
+    --tertiary: 164 58 58;
+    --error: 186 26 26;
+    --inverse-surface: 44 48 57;
+    --inverse-on-surface: 238 240 252;
+    --inverse-primary: 78 222 163;
+    color-scheme: light;
+  }
+  .dark {
+    --surface: 15 19 28;
+    --surface-dim: 15 19 28;
+    --surface-bright: 53 57 66;
+    --surface-container-lowest: 10 14 22;
+    --surface-container-low: 24 28 36;
+    --surface-container: 28 32 40;
+    --surface-container-high: 38 42 51;
+    --surface-container-highest: 49 53 62;
+    --surface-variant: 60 74 66;
+    --on-surface: 223 226 238;
+    --on-surface-variant: 187 202 191;
+    --outline: 134 148 138;
+    --outline-variant: 60 74 66;
+    --primary: 78 222 163;
+    --on-primary: 0 56 36;
+    --primary-container: 16 185 129;
+    --on-primary-container: 0 66 43;
+    --secondary: 173 198 255;
+    --on-secondary: 0 46 106;
+    --secondary-container: 5 102 217;
+    --tertiary: 255 179 175;
+    --error: 255 180 171;
+    --inverse-surface: 223 226 238;
+    --inverse-on-surface: 44 48 57;
+    --inverse-primary: 0 108 73;
+    color-scheme: dark;
+  }
+
+  * { @apply border-border; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-surface font-body text-body-md text-on-surface antialiased;
+    overflow-x: clip;
+  }
+  ::selection { background: rgb(var(--primary)); color: rgb(var(--on-primary)); }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  :focus-visible { outline: 2px solid rgb(var(--primary)); outline-offset: 3px; }
+}
+
+@layer components {
+  /* Static technical grid + soft emerald/cobalt aurora (no animation). */
+  .site-bg {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(900px circle at 12% 0%, rgb(var(--primary-container) / 0.16), transparent 55%),
+      radial-gradient(800px circle at 90% 8%, rgb(var(--secondary) / 0.10), transparent 55%);
+  }
+  .site-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgb(var(--primary) / 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--primary) / 0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 75%);
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 75%);
+  }
+
+  /* Scroll reveal: transform + opacity only, per the motion spec. */
+  .reveal {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal[data-visible="true"] { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .marquee-track { animation: none !important; }
+}
